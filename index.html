@@ -19,7 +19,6 @@
 
     <style>
         :root {
-            /* Light Theme (Slate/Cool Grays) */
             --primary: #2563eb; --primary-hover: #1d4ed8;
             --bg: #f8fafc; --card-bg: #ffffff;
             --text-main: #0f172a; --text-muted: #64748b;
@@ -28,24 +27,18 @@
             --block-bg: #ffffff;
             --input-bg: #f8fafc;
             --shadow-opacity: 0.1;
-            --topbar-bg: rgba(248, 250, 252, 0.7);
             --modal-overlay: rgba(0, 0, 0, 0.4);
             --font: 'Inter', sans-serif; --font-mono: 'JetBrains Mono', monospace;
         }
 
         .dark-theme {
-            /* Dark Theme (Premium Zinc/OLED Black) */
             --primary: #3b82f6; --primary-hover: #60a5fa;
-            --bg: #09090b; /* Zinc 950 - Ultra Deep Black */
-            --card-bg: #18181b; /* Zinc 900 */
+            --bg: #09090b; --card-bg: #18181b;
             --text-main: #fafafa; --text-muted: #a1a1aa;
-            --border: #27272a; /* Zinc 800 */
-            --success: #10b981; --danger: #ef4444;
+            --border: #27272a; --success: #10b981; --danger: #ef4444;
             --grid-color: #27272a;
-            --block-bg: #27272a; /* Éclaircit les blocs pour les détacher de la carte */
-            --input-bg: #09090b; /* Assombrit les inputs pour l'effet de profondeur */
-            --shadow-opacity: 0.6; /* Ombre plus forte en mode sombre */
-            --topbar-bg: rgba(9, 9, 11, 0.8);
+            --block-bg: #27272a; --input-bg: #09090b;
+            --shadow-opacity: 0.6;
             --modal-overlay: rgba(0, 0, 0, 0.75);
         }
 
@@ -59,7 +52,6 @@
             overflow-x: hidden;
         }
 
-        /* Dot Grid avec Vignette */
         .grid-bg {
             position: fixed; inset: 0; z-index: -1; pointer-events: none;
             background-image: radial-gradient(var(--grid-color) 1.5px, transparent 1.5px);
@@ -69,7 +61,6 @@
             transition: all 0.4s ease;
         }
 
-        /* Contrôles Flottants */
         .floating-controls {
             position: absolute; top: 24px; right: 24px;
             display: flex; gap: 12px; z-index: 50;
@@ -85,7 +76,6 @@
 
         .container { width: 100%; max-width: 1000px; position: relative; z-index: 10; display: flex; flex-direction: column; gap: 24px;}
 
-        /* Split Screen Card */
         .card {
             background: var(--card-bg); border-radius: 24px; padding: 32px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, var(--shadow-opacity)); border: 1px solid var(--border);
@@ -104,9 +94,8 @@
         header { margin-bottom: 24px; }
         h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.03em; display: flex; align-items: center; gap: 10px;}
         .logo-icon { color: var(--primary); }
-        p.subtitle { color: var(--text-muted); font-size: 13px; margin-top: 6px; line-height: 1.5; }
+        p.subtitle { color: var(--text-muted); font-size: 13px; margin-top: 6px; line-height: 1.5; font-style: italic; }
 
-        /* Segmented Control iOS Style */
         .segmented-control {
             display: flex; background: var(--input-bg); border: 1px solid var(--border);
             border-radius: 12px; padding: 4px; margin-bottom: 24px; gap: 4px;
@@ -134,7 +123,6 @@
 
         .section-title { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 24px; display: flex; align-items: center; gap: 8px;}
 
-        /* Blocks IBAN */
         .blocks-container { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
         .iban-block {
             background: var(--block-bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px;
@@ -143,14 +131,12 @@
             transition: background-color 0.4s ease, border-color 0.4s ease, color 0.2s ease;
         }
 
-        /* Validation UI */
         .val-result { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center; }
         .val-icon { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
         .val-icon.success { background: rgba(16, 185, 129, 0.1); color: var(--success); }
         .val-icon.error { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
         .val-icon.neutral { background: var(--card-bg); border: 1px solid var(--border); color: var(--text-muted); }
 
-        /* Modal History */
         .modal-overlay { position: fixed; inset: 0; background: var(--modal-overlay); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; z-index: 1000; transition: background-color 0.4s ease;}
         .modal-content { background: var(--card-bg); border-radius: 24px; padding: 32px; width: 100%; max-width: 550px; border: 1px solid var(--border); box-shadow: 0 25px 50px rgba(0,0,0,var(--shadow-opacity)); transition: background-color 0.4s ease;}
         .history-list { display: flex; flex-direction: column; gap: 10px; max-height: 350px; overflow-y: auto; padding-right: 5px; margin-top: 20px; }
@@ -164,7 +150,6 @@
 
         kbd { background: var(--input-bg); border: 1px solid var(--border); padding: 4px 8px; border-radius: 6px; font-size: 10px; font-family: var(--font-mono); color: var(--text-main); font-weight: 700;}
 
-        /* Toast stylisé */
         .toast {
             position: fixed; bottom: 32px; left: 50%;
             background: var(--text-main); color: var(--bg); padding: 14px 28px; border-radius: 99px;
@@ -195,6 +180,93 @@
     <script type="text/babel">
         const { useState, useEffect, useCallback, useRef } = React;
         const { motion, AnimatePresence } = window.Motion;
+
+        // --- I18N DICTIONARY & QUOTES ---
+        const i18n = {
+            fr: {
+                genTab: 'Générateur', valTab: 'Validateur', bulkTab: 'Masse',
+                historyTitle: 'Historique récent', themeTitle: 'Changer le thème', langTitle: 'Switch to English',
+                selectCountry: 'Pays Cible',
+                btnGen: 'Créer un IBAN',
+                spaceHint: 'pour regénérer', copyAllHint: 'Tout copier',
+                standardFormat: 'Format Standard (Clic pour copier)',
+                copyFullBtn: "Copier l'IBAN complet",
+                pasteIban: 'Coller un IBAN',
+                valSubtitle: 'Vérifie instantanément la conformité structurelle (Modulo 97 - Norme ISO 13616).',
+                valWait: 'En attente',
+                valWaitDesc: "Collez un IBAN à gauche pour commencer l'analyse.",
+                valValid: 'IBAN Valide',
+                valValidDesc: 'La structure et la clé de contrôle sont correctes.',
+                valInvalid: 'IBAN Invalide',
+                valInvalidDesc: 'La clé de contrôle ne correspond pas au numéro de compte.',
+                bulkVolume: 'Volume de données',
+                entries: 'Entrées',
+                bulkDesc: 'Export au format CSV. Séparateur point-virgule et encodage UTF-8 natif.',
+                bulkBtn: 'Exporter en CSV',
+                bulkReady: "Prêt pour l'export",
+                bulkReadyDesc: 'Le fichier CSV sera généré avec des blocs espacés pour faciliter la lecture dans vos logiciels tableurs.',
+                toastCopied: 'Copié',
+                toastBlock: 'Bloc copié',
+                toastFull: 'IBAN complet',
+                toastHistory: 'Copié depuis historique',
+                emptyHistory: 'Aucun IBAN généré.',
+                madeBy: 'Créé par'
+            },
+            en: {
+                genTab: 'Generator', valTab: 'Validator', bulkTab: 'Bulk',
+                historyTitle: 'Recent History', themeTitle: 'Toggle Theme', langTitle: 'Passer en Français',
+                selectCountry: 'Target Country',
+                btnGen: 'Generate IBAN',
+                spaceHint: 'to regenerate', copyAllHint: 'Copy all',
+                standardFormat: 'Standard Format (Click to copy)',
+                copyFullBtn: 'Copy Full IBAN',
+                pasteIban: 'Paste an IBAN',
+                valSubtitle: 'Instantly verify structural compliance (Modulo 97 - ISO 13616 Standard).',
+                valWait: 'Waiting',
+                valWaitDesc: 'Paste an IBAN on the left to start the analysis.',
+                valValid: 'Valid IBAN',
+                valValidDesc: 'The structure and checksum are correct.',
+                valInvalid: 'Invalid IBAN',
+                valInvalidDesc: 'The checksum does not match the account number.',
+                bulkVolume: 'Data Volume',
+                entries: 'Entries',
+                bulkDesc: 'CSV Export. Semicolon separator and native UTF-8 encoding.',
+                bulkBtn: 'Export to CSV',
+                bulkReady: 'Ready for export',
+                bulkReadyDesc: 'The CSV file will be generated with spaced blocks for easy reading in your spreadsheet software.',
+                toastCopied: 'Copied',
+                toastBlock: 'Block copied',
+                toastFull: 'Full IBAN',
+                toastHistory: 'Copied from history',
+                emptyHistory: 'No IBAN generated yet.',
+                madeBy: 'Created by'
+            }
+        };
+
+        const countryLabels = {
+            fr: { FR: '🇫🇷 France', DE: '🇩🇪 Allemagne', ES: '🇪🇸 Espagne', IT: '🇮🇹 Italie', BE: '🇧🇪 Belgique', GB: '🇬🇧 Royaume-Uni' },
+            en: { FR: '🇫🇷 France', DE: '🇩🇪 Germany', ES: '🇪🇸 Spain', IT: '🇮🇹 Italy', BE: '🇧🇪 Belgium', GB: '🇬🇧 United Kingdom' }
+        };
+
+        // VIDEO GAME QUOTES
+        const funnyQuotes = {
+            fr: [
+                "« C'est dangereux d'y aller seul ! Prends ça. » - The Legend of Zelda",
+                "« Le gâteau est un mensonge. » - Portal",
+                "« Moi aussi j'étais aventurier, et puis j'ai pris une flèche dans le genou. » - Skyrim",
+                "« La guerre... La guerre ne meurt jamais. » - Fallout",
+                "« Loué soit le soleil ! » - Dark Souls",
+                "« Toutes vos bases sont appartiennent à nous. » - Zero Wing"
+            ],
+            en: [
+                "« It's dangerous to go alone! Take this. » - The Legend of Zelda",
+                "« The cake is a lie. » - Portal",
+                "« I used to be an adventurer like you, then I took an arrow in the knee. » - Skyrim",
+                "« War. War never changes. » - Fallout",
+                "« Praise the sun! » - Dark Souls",
+                "« All your base are belong to us. » - Zero Wing"
+            ]
+        };
 
         // --- LUCIDE ICONS ---
         const Icon = ({ path, size = 20, className = "" }) => (
@@ -262,6 +334,7 @@
 
         function App() {
             const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+            const [lang, setLang] = useState(localStorage.getItem('ibanr_lang') || 'fr');
             const [activeTab, setActiveTab] = useState('generator');
             const [country, setCountry] = useState('FR');
             const [currentIban, setCurrentIban] = useState('');
@@ -271,13 +344,25 @@
             const [bulkCount, setBulkCount] = useState(50);
             const [toastState, setToastState] = useState({ show: false, msg: '' });
             const toastTimer = useRef(null);
+            
+            const [quoteIndex, setQuoteIndex] = useState(0);
 
-            useEffect(() => { document.getElementById('loader').style.display = 'none'; }, []);
+            const t = i18n[lang];
+
+            useEffect(() => { 
+                document.getElementById('loader').style.display = 'none'; 
+                setQuoteIndex(Math.floor(Math.random() * funnyQuotes[lang].length));
+            }, []);
 
             useEffect(() => {
                 document.documentElement.className = theme === 'dark' ? 'dark-theme' : '';
                 localStorage.setItem('theme', theme);
             }, [theme]);
+
+            useEffect(() => {
+                localStorage.setItem('ibanr_lang', lang);
+                setQuoteIndex(Math.floor(Math.random() * funnyQuotes[lang].length));
+            }, [lang]);
 
             const playPop = () => {
                 try {
@@ -292,7 +377,7 @@
                 } catch(e) {}
             };
 
-            const handleCopy = (txt, label = 'Copié') => {
+            const handleCopy = (txt, label = t.toastCopied) => {
                 navigator.clipboard.writeText(txt).then(() => {
                     playPop();
                     if (toastTimer.current) clearTimeout(toastTimer.current);
@@ -309,7 +394,11 @@
                     localStorage.setItem('ibanr_history', JSON.stringify(newHist));
                     return newHist;
                 });
-            }, [country]);
+                
+                if(Math.random() > 0.7) {
+                     setQuoteIndex(Math.floor(Math.random() * funnyQuotes[lang].length));
+                }
+            }, [country, lang]);
 
             useEffect(() => { if(!currentIban) generateNew(); }, [generateNew, currentIban]);
 
@@ -317,12 +406,12 @@
                 const handleKeyDown = (e) => {
                     if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT') return;
                     if (e.code === 'Space') { e.preventDefault(); generateNew(); }
-                    if (e.code === 'KeyC' && e.ctrlKey && e.shiftKey) { e.preventDefault(); handleCopy(currentIban, 'IBAN complet'); }
+                    if (e.code === 'KeyC' && e.ctrlKey && e.shiftKey) { e.preventDefault(); handleCopy(currentIban, t.toastFull); }
                     if (e.code === 'Escape') setShowHistory(false);
                 };
                 window.addEventListener('keydown', handleKeyDown);
                 return () => window.removeEventListener('keydown', handleKeyDown);
-            }, [generateNew, currentIban]);
+            }, [generateNew, currentIban, t]);
 
             const getValidationStatus = () => {
                 const v = valInput.replace(/\s/g,'').toUpperCase();
@@ -335,7 +424,7 @@
             const isValid = getValidationStatus();
 
             const handleExport = () => {
-                let csv = "\uFEFFIBAN (Formaté);PAYS\r\n"; 
+                let csv = `\uFEFFIBAN;PAYS\r\n`; 
                 for(let i=0; i<bulkCount; i++) {
                     const iban = generateRawIban(country);
                     let formattedStr = ""; let currentIdx = 0;
@@ -354,12 +443,16 @@
 
             return (
                 <React.Fragment>
-                    {/* Floating Controls (Historique & Dark Mode) */}
                     <div className="floating-controls">
-                        <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} className="icon-btn" onClick={() => setShowHistory(true)} title="Historique">
+                        <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} className="icon-btn" 
+                            onClick={() => setLang(l => l === 'fr' ? 'en' : 'fr')} title={t.langTitle} 
+                            style={{fontWeight: 800, fontSize: '13px', fontFamily: 'var(--font-mono)'}}>
+                            {lang === 'fr' ? 'EN' : 'FR'}
+                        </motion.button>
+                        <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} className="icon-btn" onClick={() => setShowHistory(true)} title={t.historyTitle}>
                             <Icon path={icons.history} />
                         </motion.button>
-                        <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} className="icon-btn" onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')} title="Changer le thème">
+                        <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} className="icon-btn" onClick={() => setTheme(tm => tm === 'light' ? 'dark' : 'light')} title={t.themeTitle}>
                             <Icon path={theme === 'light' ? icons.moon : icons.sun} />
                         </motion.button>
                     </div>
@@ -367,40 +460,34 @@
                     <div className="container">
                         <div className="card">
                             
-                            {/* COLONNE GAUCHE (Statique avec formulaires dynamiques) */}
                             <div className="layout-left">
                                 <header>
                                     <h1><Icon path={icons.wallet} className="logo-icon" size={26} /> ibanr</h1>
-                                    <p className="subtitle">L'outil de test bancaire définitif.</p>
+                                    <p className="subtitle">{funnyQuotes[lang][quoteIndex]}</p>
                                 </header>
 
-                                {/* Segmented Control iOS Style */}
                                 <div className="segmented-control">
-                                    <button className={`segment-btn ${activeTab === 'generator' ? 'active' : ''}`} onClick={() => setActiveTab('generator')}>Générateur</button>
-                                    <button className={`segment-btn ${activeTab === 'validator' ? 'active' : ''}`} onClick={() => setActiveTab('validator')}>Validateur</button>
-                                    <button className={`segment-btn ${activeTab === 'bulk' ? 'active' : ''}`} onClick={() => setActiveTab('bulk')}>Masse</button>
+                                    <button className={`segment-btn ${activeTab === 'generator' ? 'active' : ''}`} onClick={() => setActiveTab('generator')}>{t.genTab}</button>
+                                    <button className={`segment-btn ${activeTab === 'validator' ? 'active' : ''}`} onClick={() => setActiveTab('validator')}>{t.valTab}</button>
+                                    <button className={`segment-btn ${activeTab === 'bulk' ? 'active' : ''}`} onClick={() => setActiveTab('bulk')}>{t.bulkTab}</button>
                                 </div>
 
-                                {/* Formulaires Contextuels */}
                                 <div className="form-section">
                                     {activeTab === 'generator' && (
                                         <motion.div initial={{opacity:0}} animate={{opacity:1}} style={{display:'flex', flexDirection:'column', height:'100%'}}>
                                             <div className="field-group">
-                                                <label>Pays Cible</label>
+                                                <label>{t.selectCountry}</label>
                                                 <select value={country} onChange={(e) => setCountry(e.target.value)}>
-                                                    <option value="FR">🇫🇷 France</option>
-                                                    <option value="DE">🇩🇪 Allemagne</option>
-                                                    <option value="ES">🇪🇸 Espagne</option>
-                                                    <option value="IT">🇮🇹 Italie</option>
-                                                    <option value="BE">🇧🇪 Belgique</option>
-                                                    <option value="GB">🇬🇧 Royaume-Uni</option>
+                                                    {Object.entries(countryLabels[lang]).map(([code, label]) => (
+                                                        <option key={code} value={code}>{label}</option>
+                                                    ))}
                                                 </select>
                                             </div>
                                             <div style={{ textAlign:'center', marginBottom:'16px', color:'var(--text-muted)' }}>
-                                                <kbd>Espace</kbd> pour regénérer
+                                                <kbd>Space</kbd> {t.spaceHint}
                                             </div>
                                             <InteractiveButton onClick={generateNew} className="btn-generate" icon={icons.sparkles}>
-                                                Créer un IBAN
+                                                {t.btnGen}
                                             </InteractiveButton>
                                         </motion.div>
                                     )}
@@ -408,11 +495,11 @@
                                     {activeTab === 'validator' && (
                                         <motion.div initial={{opacity:0}} animate={{opacity:1}} style={{display:'flex', flexDirection:'column', height:'100%'}}>
                                             <div className="field-group">
-                                                <label>Coller un IBAN</label>
+                                                <label>{t.pasteIban}</label>
                                                 <input type="text" placeholder="Ex: FR76 3000..." value={valInput} onChange={(e) => setValInput(e.target.value)} />
                                             </div>
                                             <p style={{fontSize:'12px', color:'var(--text-muted)', lineHeight:'1.5', marginTop:'auto', paddingBottom:'16px'}}>
-                                                Vérifie instantanément la conformité structurelle (Modulo 97 - Norme ISO 13616).
+                                                {t.valSubtitle}
                                             </p>
                                         </motion.div>
                                     )}
@@ -420,30 +507,29 @@
                                     {activeTab === 'bulk' && (
                                         <motion.div initial={{opacity:0}} animate={{opacity:1}} style={{display:'flex', flexDirection:'column', height:'100%'}}>
                                             <div className="field-group">
-                                                <label>Volume de données</label>
+                                                <label>{t.bulkVolume}</label>
                                                 <select value={bulkCount} onChange={(e) => setBulkCount(Number(e.target.value))}>
-                                                    <option value={10}>10 Entrées</option>
-                                                    <option value={50}>50 Entrées</option>
-                                                    <option value={100}>100 Entrées</option>
-                                                    <option value={500}>500 Entrées</option>
+                                                    <option value={10}>10 {t.entries}</option>
+                                                    <option value={50}>50 {t.entries}</option>
+                                                    <option value={100}>100 {t.entries}</option>
+                                                    <option value={500}>500 {t.entries}</option>
                                                 </select>
                                             </div>
                                             <p style={{fontSize:'12px', color:'var(--text-muted)', lineHeight:'1.5', marginTop:'auto', paddingBottom:'16px'}}>
-                                                Export au format CSV. Séparateur point-virgule et encodage UTF-8 natif.
+                                                {t.bulkDesc}
                                             </p>
                                             <InteractiveButton onClick={handleExport} className="btn-generate" icon={icons.download}>
-                                                Exporter en CSV
+                                                {t.bulkBtn}
                                             </InteractiveButton>
                                         </motion.div>
                                     )}
                                 </div>
                             </div>
 
-                            {/* COLONNE DROITE (Dynamique) */}
                             <AnimatePresence mode="wait">
                                 {activeTab === 'generator' && (
                                     <motion.div key="right-gen" variants={rightColumnVariants} initial="initial" animate="animate" exit="exit" className="layout-right">
-                                        <div className="section-title"><Icon path={icons.copy} size={16}/> Copie par bloc</div>
+                                        <div className="section-title"><Icon path={icons.copy} size={16}/> {t.standardFormat}</div>
                                         <motion.div variants={containerVariants} initial="hidden" animate="show" key={currentIban} className="blocks-container">
                                             {(() => {
                                                 let blocks = []; let idx = 0;
@@ -451,7 +537,7 @@
                                                     const text = currentIban.substring(idx, idx + size);
                                                     blocks.push(
                                                         <motion.div key={i} variants={blockVariants} whileHover={{ scale: 1.05, y:-2, borderColor: 'var(--primary)', color: 'var(--primary)', boxShadow: '0 4px 12px rgba(37,99,235,0.15)' }} whileTap={{ scale: 0.95 }}
-                                                            className="iban-block" onClick={() => handleCopy(text, 'Bloc copié')}>
+                                                            className="iban-block" onClick={() => handleCopy(text, t.toastBlock)}>
                                                             {text}
                                                         </motion.div>
                                                     );
@@ -460,8 +546,8 @@
                                                 return blocks;
                                             })()}
                                         </motion.div>
-                                        <InteractiveButton onClick={() => handleCopy(currentIban, 'IBAN complet')} className="btn-generate" style={{ background: 'transparent', color: 'var(--text-main)', border: '2px dashed var(--border)', marginTop:'auto' }} icon={icons.copy}>
-                                            Copier l'IBAN complet
+                                        <InteractiveButton onClick={() => handleCopy(currentIban, t.toastFull)} className="btn-generate" style={{ background: 'transparent', color: 'var(--text-main)', border: '2px dashed var(--border)', marginTop:'auto' }} icon={icons.copy}>
+                                            {t.copyFullBtn}
                                         </InteractiveButton>
                                     </motion.div>
                                 )}
@@ -472,22 +558,22 @@
                                             {isValid === null && (
                                                 <motion.div initial={{opacity:0}} animate={{opacity:1}} style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
                                                     <div className="val-icon neutral"><Icon path={icons.shield} size={28}/></div>
-                                                    <h3 style={{fontSize:'18px', marginBottom:'8px'}}>En attente</h3>
-                                                    <p style={{color:'var(--text-muted)', fontSize:'14px'}}>Collez un IBAN à gauche pour commencer l'analyse.</p>
+                                                    <h3 style={{fontSize:'18px', marginBottom:'8px'}}>{t.valWait}</h3>
+                                                    <p style={{color:'var(--text-muted)', fontSize:'14px'}}>{t.valWaitDesc}</p>
                                                 </motion.div>
                                             )}
                                             {isValid === true && (
                                                 <motion.div initial={{scale:0.8, opacity:0}} animate={{scale:1, opacity:1}} style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
                                                     <div className="val-icon success"><Icon path={icons.check} size={32}/></div>
-                                                    <h3 style={{fontSize:'20px', color:'var(--success)', marginBottom:'8px'}}>IBAN Valide</h3>
-                                                    <p style={{color:'var(--text-muted)', fontSize:'14px'}}>La structure et la clé de contrôle sont correctes.</p>
+                                                    <h3 style={{fontSize:'20px', color:'var(--success)', marginBottom:'8px'}}>{t.valValid}</h3>
+                                                    <p style={{color:'var(--text-muted)', fontSize:'14px'}}>{t.valValidDesc}</p>
                                                 </motion.div>
                                             )}
                                             {isValid === false && (
                                                 <motion.div initial={{scale:0.8, opacity:0}} animate={{scale:1, opacity:1}} style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
                                                     <div className="val-icon error"><Icon path={icons.x} size={32}/></div>
-                                                    <h3 style={{fontSize:'20px', color:'var(--danger)', marginBottom:'8px'}}>IBAN Invalide</h3>
-                                                    <p style={{color:'var(--text-muted)', fontSize:'14px'}}>La clé de contrôle ne correspond pas au numéro de compte.</p>
+                                                    <h3 style={{fontSize:'20px', color:'var(--danger)', marginBottom:'8px'}}>{t.valInvalid}</h3>
+                                                    <p style={{color:'var(--text-muted)', fontSize:'14px'}}>{t.valInvalidDesc}</p>
                                                 </motion.div>
                                             )}
                                         </div>
@@ -498,8 +584,8 @@
                                     <motion.div key="right-bulk" variants={rightColumnVariants} initial="initial" animate="animate" exit="exit" className="layout-right">
                                         <div className="val-result">
                                             <div className="val-icon neutral"><Icon path={icons.database} size={28}/></div>
-                                            <h3 style={{fontSize:'18px', marginBottom:'8px'}}>Prêt pour l'export</h3>
-                                            <p style={{color:'var(--text-muted)', fontSize:'14px'}}>Le fichier CSV sera généré avec des blocs espacés pour faciliter la lecture dans vos logiciels tableurs.</p>
+                                            <h3 style={{fontSize:'18px', marginBottom:'8px'}}>{t.bulkReady}</h3>
+                                            <p style={{color:'var(--text-muted)', fontSize:'14px'}}>{t.bulkReadyDesc}</p>
                                         </div>
                                     </motion.div>
                                 )}
@@ -507,24 +593,23 @@
                         </div>
 
                         <footer>
-                            Créé par <a href="https://www.linkedin.com/in/pcarouge" target="_blank" rel="noreferrer">Paul Carouge</a>
+                            {t.madeBy} <a href="https://www.linkedin.com/in/pcarouge" target="_blank" rel="noreferrer">Paul Carouge</a>
                         </footer>
                     </div>
 
-                    {/* Modal History */}
                     <AnimatePresence>
                         {showHistory && (
                             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="modal-overlay" onClick={() => setShowHistory(false)}>
                                 <motion.div initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }} className="modal-content" onClick={e => e.stopPropagation()}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-                                        <h2 style={{ fontSize: '20px', fontWeight: 800 }}>Derniers générés</h2>
+                                        <h2 style={{ fontSize: '20px', fontWeight: 800 }}>{t.historyTitle}</h2>
                                         <button onClick={() => setShowHistory(false)} style={{ background:'none', border:'none', cursor:'pointer', color:'var(--text-muted)' }}>
                                             <Icon path={icons.x} />
                                         </button>
                                     </div>
                                     <div className="history-list">
-                                        {history.length === 0 ? <p style={{textAlign:'center', color:'var(--text-muted)'}}>Aucun IBAN généré.</p> : history.map((iban, i) => (
-                                            <motion.div whileHover={{ scale: 1.02, borderColor: 'var(--primary)', color: 'var(--primary)' }} whileTap={{ scale: 0.98 }} key={i} className="history-item" onClick={() => { handleCopy(iban, 'Copié depuis historique'); setShowHistory(false); }}>
+                                        {history.length === 0 ? <p style={{textAlign:'center', color:'var(--text-muted)'}}>{t.emptyHistory}</p> : history.map((iban, i) => (
+                                            <motion.div whileHover={{ scale: 1.02, borderColor: 'var(--primary)', color: 'var(--primary)' }} whileTap={{ scale: 0.98 }} key={i} className="history-item" onClick={() => { handleCopy(iban, t.toastHistory); setShowHistory(false); }}>
                                                 <span>{formatIban(iban)}</span>
                                                 <Icon path={icons.copy} size={16}/>
                                             </motion.div>
@@ -535,7 +620,6 @@
                         )}
                     </AnimatePresence>
 
-                    {/* Toast Notification */}
                     <AnimatePresence>
                         {toastState.show && (
                             <motion.div
