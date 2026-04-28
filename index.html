@@ -52,66 +52,19 @@
             transition: background-color 0.3s ease;
         }
 
-        .top-bar {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .icon-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
+        .top-bar { position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; }
+        .icon-btn { background: var(--card-bg); border: 1px solid var(--border); color: var(--text-main); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
         .icon-btn:hover { border-color: var(--primary); color: var(--primary); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
 
         .container { width: 100%; max-width: 1100px; }
 
-        .tabs {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-
-        .tab {
-            padding: 10px 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 99px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--text-muted);
-            transition: all 0.2s;
-        }
-
+        .tabs { display: flex; gap: 12px; margin-bottom: 20px; justify-content: center; }
+        .tab { padding: 10px 20px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 99px; cursor: pointer; font-weight: 600; font-size: 14px; color: var(--text-muted); transition: all 0.2s; }
         .tab.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border);
-            display: flex;
-            gap: 48px;
-            transition: all 0.3s ease;
-        }
-
+        .card { background: var(--card-bg); border-radius: 24px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); border: 1px solid var(--border); display: flex; gap: 48px; transition: all 0.3s ease; }
         .view-content { display: none; width: 100%; }
         .view-content.active { display: flex; animation: fadeIn 0.4s ease; }
-        
         .view-generator { gap: 48px; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -125,35 +78,16 @@
 
         .field-group { position: relative; margin-bottom: 20px; }
         label { display: block; font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; letter-spacing: 0.05em; }
-        select, input {
-            width: 100%;
-            background: var(--bg);
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            padding: 14px 16px;
-            color: var(--text-main);
-            font-family: var(--font);
-            font-size: 15px;
-            font-weight: 600;
-            outline: none;
-        }
+        select, input { width: 100%; background: var(--bg); border: 2px solid var(--border); border-radius: 12px; padding: 14px 16px; color: var(--text-main); font-family: var(--font); font-size: 15px; font-weight: 600; outline: none; }
 
-        .btn-generate {
-            background: var(--primary); color: white; border: none; border-radius: 12px; padding: 14px 24px;
-            font-size: 15px; font-weight: 600; cursor: pointer; width: 100%; display: flex; justify-content: center; gap: 8px;
-            transition: all 0.2s;
-        }
+        .btn-generate { background: var(--primary); color: white; border: none; border-radius: 12px; padding: 14px 24px; font-size: 15px; font-weight: 600; cursor: pointer; width: 100%; display: flex; justify-content: center; gap: 8px; transition: all 0.2s; }
         .btn-generate:hover { background: var(--primary-hover); transform: translateY(-1px); }
 
         .result-area { background: var(--bg); border-radius: 16px; padding: 32px; border: 1px solid var(--border); }
         .section-title { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 16px; }
 
         .blocks-container { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
-        .iban-block {
-            background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px;
-            font-family: var(--font-mono); font-size: 20px; font-weight: 600; cursor: pointer; transition: all 0.2s;
-            color: var(--text-main);
-        }
+        .iban-block { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-family: var(--font-mono); font-size: 20px; font-weight: 600; cursor: pointer; transition: all 0.2s; color: var(--text-main); }
         .iban-block:hover { border-color: var(--primary); color: var(--primary); box-shadow: 0 4px 12px rgba(37,99,235,0.1); }
 
         /* Validator UI */
@@ -161,48 +95,22 @@
         .invalid-box { padding: 20px; border-radius: 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--danger); color: var(--danger); font-weight: 600; display:none; margin-top:20px;}
 
         /* Modal History */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px);
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1000;
-        }
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1000; }
         .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal-content {
-            background: var(--card-bg); border-radius: 24px; padding: 32px; width: 100%; max-width: 550px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2); transform: translateY(20px); transition: 0.3s;
-        }
+        .modal-content { background: var(--card-bg); border-radius: 24px; padding: 32px; width: 100%; max-width: 550px; box-shadow: 0 25px 50px rgba(0,0,0,0.2); transform: translateY(20px); transition: 0.3s; }
         .modal-overlay.active .modal-content { transform: translateY(0); }
         .history-list { display: flex; flex-direction: column; gap: 10px; max-height: 400px; overflow-y: auto; padding-right: 5px; }
         .history-list::-webkit-scrollbar { width: 6px; }
         .history-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
-        .history-item { 
-            font-family: var(--font-mono); padding: 16px; background: var(--bg); border: 1px solid var(--border); 
-            border-radius: 12px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 600; color: var(--text-main); transition: 0.2s;
-        }
+        .history-item { font-family: var(--font-mono); padding: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 600; color: var(--text-main); transition: 0.2s; }
         .history-item:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
 
-        /* Signature */
-        footer {
-            margin-top: 40px;
-            font-size: 14px;
-            color: var(--text-muted);
-            text-align: center;
-        }
-        footer a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 700;
-            transition: color 0.2s;
-        }
+        footer { margin-top: 40px; font-size: 14px; color: var(--text-muted); text-align: center; }
+        footer a { color: var(--text-main); text-decoration: none; font-weight: 700; transition: color 0.2s; }
         footer a:hover { color: var(--primary); text-decoration: underline; }
 
-        .toast {
-            position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(100px);
-            background: var(--text-main); color: var(--card-bg); padding: 12px 24px; border-radius: 99px; font-weight: 600; transition: 0.4s; z-index: 2000;
-        }
+        .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--text-main); color: var(--card-bg); padding: 12px 24px; border-radius: 99px; font-weight: 600; transition: 0.4s; z-index: 2000; }
         .toast.show { transform: translateX(-50%) translateY(0); }
-
         kbd { background: var(--bg); border: 1px solid var(--border); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-main);}
 
         @media (max-width: 900px) {
@@ -307,7 +215,15 @@
     <div class="toast" id="toast">Copié !</div>
 
     <script>
-        const blockConfig = { 'FR': [4,4,4,4,4,4,3], 'DE': [4,4,4,4,4,2], 'ES': [4,4,4,4,4,4], 'IT': [4,4,4,4,4,4,3], 'BE': [4,4,4,4], 'GB': [4,4,4,4,4,2] };
+        const blockConfig = { 
+            'FR': [4,4,4,4,4,4,3], // 27 chars
+            'DE': [4,4,4,4,4,2],   // 22 chars
+            'ES': [4,4,4,4,4,4],   // 24 chars
+            'IT': [4,4,4,4,4,4,3], // 27 chars
+            'BE': [4,4,4,4],       // 16 chars
+            'GB': [4,4,4,4,4,2]    // 22 chars
+        };
+        
         const bankData = {
             'FR': [{ code: '30004' },{ code: '30003' },{ code: '20041' }],
             'DE': [{ code: '10040000' },{ code: '10070000' }],
@@ -355,16 +271,42 @@
         };
         document.getElementById('closeHistory').onclick = () => historyModal.classList.remove('active');
 
+        // LE CŒUR DU CORRECTIF : L'algorithme complet et mathématique
         function generateRaw(country) {
-            const bank = bankData[country][0];
-            let b = '';
-            if(country === 'FR') b = bank.code + "12345" + Math.random().toString().slice(2,13); 
-            else if(country === 'DE') b = bank.code + Math.random().toString().slice(2,12);
-            else b = bank.code + Math.random().toString().slice(2,15);
+            const bankList = bankData[country];
+            const bank = bankList[Math.floor(Math.random() * bankList.length)];
+            let bban = '';
             
-            const num = (b + country + "00").split('').map(c => /[A-Z]/.test(c) ? (c.charCodeAt(0)-55).toString() : c).join('');
-            const cs = (98n - (BigInt(num) % 97n)).toString().padStart(2, '0');
-            return country + cs + b;
+            // Helper pour générer N chiffres aléatoires
+            const rd = (len) => Array.from({length: len}, () => Math.floor(Math.random() * 10)).join('');
+            
+            if (country === 'FR') {
+                const frB = bank.code; 
+                const frG = rd(5); 
+                const frC = rd(11);
+                // Calcul exact de la Clé RIB Française (Modulo 97)
+                const calcFr = 97n - ((89n * BigInt(frB) + 15n * BigInt(frG) + 3n * BigInt(frC)) % 97n);
+                bban = frB + frG + frC + calcFr.toString().padStart(2, '0');
+            } else if (country === 'DE') {
+                bban = bank.code + rd(10);
+            } else if (country === 'GB') {
+                bban = bank.code + bank.sort + rd(8);
+            } else if (country === 'ES') {
+                bban = bank.code + rd(4) + rd(2) + rd(10);
+            } else if (country === 'IT') {
+                bban = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)] + bank.code + rd(5) + rd(12);
+            } else if (country === 'BE') {
+                const beNum = bank.code + rd(7);
+                let mod = BigInt(beNum) % 97n; 
+                if(mod === 0n) mod = 97n;
+                bban = beNum + mod.toString().padStart(2, '0');
+            }
+            
+            // Calcul de la clé de contrôle de l'IBAN (Modulo 97 ISO 13616)
+            const numStr = (bban + country + "00").split('').map(c => /[A-Z]/.test(c) ? (c.charCodeAt(0)-55).toString() : c).join('');
+            const cs = (98n - (BigInt(numStr) % 97n)).toString().padStart(2, '0');
+            
+            return country + cs + bban;
         }
 
         function copyI(txt) {
@@ -377,16 +319,26 @@
         function refresh() {
             const c = document.getElementById('countrySelect').value;
             currentFullIban = generateRaw(c);
-            const container = document.getElementById('ibanBlocksOutput'); container.innerHTML = '';
+            
+            const container = document.getElementById('ibanBlocksOutput'); 
+            container.innerHTML = '';
+            
             let currentIdx = 0;
             blockConfig[c].forEach((size) => {
-                const b = document.createElement('div'); b.className = 'iban-block'; 
+                const b = document.createElement('div'); 
+                b.className = 'iban-block'; 
+                // Protection au cas où
                 b.innerText = currentFullIban.substring(currentIdx, currentIdx + size);
                 currentIdx += size;
                 b.onclick = () => copyI(b.innerText); 
                 container.appendChild(b);
             });
-            if(!historyArr.includes(currentFullIban)) { historyArr.unshift(currentFullIban); if(historyArr.length > 10) historyArr.pop(); localStorage.setItem('ibanr_history', JSON.stringify(historyArr)); }
+            
+            if(!historyArr.includes(currentFullIban)) { 
+                historyArr.unshift(currentFullIban); 
+                if(historyArr.length > 10) historyArr.pop(); 
+                localStorage.setItem('ibanr_history', JSON.stringify(historyArr)); 
+            }
         }
 
         document.getElementById('generateBtn').onclick = refresh;
@@ -396,25 +348,26 @@
             const v = e.target.value.replace(/\s/g,'').toUpperCase();
             if(v.length < 15) { document.getElementById('valSuccess').style.display = document.getElementById('valError').style.display = 'none'; return; }
             const s = (v.slice(4) + v.slice(0,4)).split('').map(c => /[A-Z]/.test(c) ? (c.charCodeAt(0)-55).toString() : c).join('');
-            const ok = BigInt(s) % 97n === 1n;
-            document.getElementById('valSuccess').style.display = ok ? 'block' : 'none';
-            document.getElementById('valError').style.display = ok ? 'none' : 'block';
+            try {
+                const ok = BigInt(s) % 97n === 1n;
+                document.getElementById('valSuccess').style.display = ok ? 'block' : 'none';
+                document.getElementById('valError').style.display = ok ? 'none' : 'block';
+            } catch {
+                document.getElementById('valError').style.display = 'block';
+                document.getElementById('valSuccess').style.display = 'none';
+            }
         };
 
-        // --- CORRECTION DU CSV ---
+        // Export CSV corrigé
         document.getElementById('bulkBtn').onclick = () => {
             const count = parseInt(document.getElementById('bulkCount').value);
             const country = document.getElementById('countrySelect').value;
             
-            // 1. \uFEFF pour forcer Excel à lire le fichier en UTF-8 (sauve les accents comme "Formaté")
-            // 2. Utilisation du point-virgule (;) obligatoire pour Excel en France/Europe.
-            // 3. \r\n pour les sauts de ligne corrects.
             let csv = "\uFEFFIBAN (Formaté);PAYS\r\n"; 
             
             for(let i=0; i<count; i++) {
                 const iban = generateRaw(country);
                 
-                // Découpage propre par blocs selon la configuration du pays
                 let formattedStr = "";
                 let currentIdx = 0;
                 blockConfig[country].forEach(size => {
@@ -422,7 +375,6 @@
                     currentIdx += size;
                 });
                 
-                // Trim final pour retirer l'espace en trop, et encadrement avec des guillemets
                 csv += `"${formattedStr.trim()}";"${country}"\r\n`;
             }
             
@@ -432,8 +384,6 @@
             a.href = url; 
             a.download = `ibanr_export_${country}_${count}.csv`; 
             a.click();
-            
-            // Nettoyage de la mémoire
             window.URL.revokeObjectURL(url);
         };
 
