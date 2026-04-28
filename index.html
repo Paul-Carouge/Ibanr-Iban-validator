@@ -154,7 +154,7 @@
             font-family: var(--font-mono); font-size: 20px; font-weight: 600; cursor: pointer; transition: all 0.2s;
             color: var(--text-main);
         }
-        .iban-block:hover { border-color: var(--primary); color: var(--primary); }
+        .iban-block:hover { border-color: var(--primary); color: var(--primary); box-shadow: 0 4px 12px rgba(37,99,235,0.1); }
 
         /* Validator UI */
         .valid-box { padding: 20px; border-radius: 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid var(--success); color: var(--success); font-weight: 600; display:none; margin-top:20px;}
@@ -173,12 +173,14 @@
             box-shadow: 0 25px 50px rgba(0,0,0,0.2); transform: translateY(20px); transition: 0.3s;
         }
         .modal-overlay.active .modal-content { transform: translateY(0); }
-        .history-list { display: flex; flex-direction: column; gap: 10px; max-height: 400px; overflow-y: auto; }
+        .history-list { display: flex; flex-direction: column; gap: 10px; max-height: 400px; overflow-y: auto; padding-right: 5px; }
+        .history-list::-webkit-scrollbar { width: 6px; }
+        .history-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
         .history-item { 
             font-family: var(--font-mono); padding: 16px; background: var(--bg); border: 1px solid var(--border); 
-            border-radius: 12px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 600;
+            border-radius: 12px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 600; color: var(--text-main); transition: 0.2s;
         }
-        .history-item:hover { border-color: var(--primary); color: var(--primary); }
+        .history-item:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
 
         /* Signature */
         footer {
@@ -201,7 +203,7 @@
         }
         .toast.show { transform: translateX(-50%) translateY(0); }
 
-        kbd { background: var(--bg); border: 1px solid var(--border); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-family: var(--font-mono); }
+        kbd { background: var(--bg); border: 1px solid var(--border); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-main);}
 
         @media (max-width: 900px) {
             .card { flex-direction: column; padding: 30px; }
@@ -252,7 +254,7 @@
                 </div>
                 <div class="layout-right">
                     <div class="result-area">
-                        <div class="section-title">Format Standard</div>
+                        <div class="section-title">Format Standard (Clic pour copier)</div>
                         <div class="blocks-container" id="ibanBlocksOutput"></div>
                         <button class="btn-generate" id="copyFullBtn" style="background:var(--bg); color:var(--text-main); border:1px solid var(--border);">Copier l'IBAN complet</button>
                     </div>
@@ -280,9 +282,10 @@
                         <option value="10">10 entrées</option>
                         <option value="50">50 entrées</option>
                         <option value="100">100 entrées</option>
+                        <option value="500">500 entrées</option>
                     </select>
                 </div>
-                <button class="btn-generate" id="bulkBtn">Exporter le fichier .CSV</button>
+                <button class="btn-generate" id="bulkBtn">Télécharger le fichier .CSV</button>
             </div>
         </div>
 
@@ -293,9 +296,9 @@
 
     <div class="modal-overlay" id="historyModal">
         <div class="modal-content">
-            <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
-                <h2>Historique récent</h2>
-                <button id="closeHistory" style="background:none; border:none; font-size:24px; cursor:pointer; color:var(--text-muted);">&times;</button>
+            <div style="display:flex; justify-content:space-between; margin-bottom:24px; align-items:center;">
+                <h2 style="font-size: 20px; font-weight: 800;">Historique récent</h2>
+                <button id="closeHistory" style="background:none; border:none; font-size:28px; cursor:pointer; color:var(--text-muted);">&times;</button>
             </div>
             <div class="history-list" id="historyList"></div>
         </div>
@@ -347,7 +350,7 @@
         const historyModal = document.getElementById('historyModal');
         document.getElementById('historyToggle').onclick = () => {
             const list = document.getElementById('historyList');
-            list.innerHTML = historyArr.length ? historyArr.map(i => `<div class="history-item" onclick="copyI('${i}')"><span>${i.match(/.{1,4}/g).join(' ')}</span><span style="color:var(--primary); font-size:12px;">Copier</span></div>`).join('') : '<div style="text-align:center; color:var(--text-muted);">Vide.</div>';
+            list.innerHTML = historyArr.length ? historyArr.map(i => `<div class="history-item" onclick="copyI('${i}'); document.getElementById('historyModal').classList.remove('active');"><span>${i.match(/.{1,4}/g).join(' ')}</span><span style="color:var(--primary); font-size:12px;">Copier</span></div>`).join('') : '<div style="text-align:center; color:var(--text-muted);">Vide.</div>';
             historyModal.classList.add('active');
         };
         document.getElementById('closeHistory').onclick = () => historyModal.classList.remove('active');
@@ -375,9 +378,13 @@
             const c = document.getElementById('countrySelect').value;
             currentFullIban = generateRaw(c);
             const container = document.getElementById('ibanBlocksOutput'); container.innerHTML = '';
-            blockConfig[c].forEach((s, i) => {
-                const b = document.createElement('div'); b.className = 'iban-block'; b.innerText = currentFullIban.substr(container.innerText.replace(/\\s/g,'').length, s);
-                b.onclick = () => copyI(b.innerText); container.appendChild(b);
+            let currentIdx = 0;
+            blockConfig[c].forEach((size) => {
+                const b = document.createElement('div'); b.className = 'iban-block'; 
+                b.innerText = currentFullIban.substring(currentIdx, currentIdx + size);
+                currentIdx += size;
+                b.onclick = () => copyI(b.innerText); 
+                container.appendChild(b);
             });
             if(!historyArr.includes(currentFullIban)) { historyArr.unshift(currentFullIban); if(historyArr.length > 10) historyArr.pop(); localStorage.setItem('ibanr_history', JSON.stringify(historyArr)); }
         }
@@ -386,7 +393,7 @@
         document.getElementById('copyFullBtn').onclick = () => copyI(currentFullIban);
 
         document.getElementById('valInput').oninput = (e) => {
-            const v = e.target.value.replace(/\\s/g,'').toUpperCase();
+            const v = e.target.value.replace(/\s/g,'').toUpperCase();
             if(v.length < 15) { document.getElementById('valSuccess').style.display = document.getElementById('valError').style.display = 'none'; return; }
             const s = (v.slice(4) + v.slice(0,4)).split('').map(c => /[A-Z]/.test(c) ? (c.charCodeAt(0)-55).toString() : c).join('');
             const ok = BigInt(s) % 97n === 1n;
@@ -394,23 +401,46 @@
             document.getElementById('valError').style.display = ok ? 'none' : 'block';
         };
 
+        // --- CORRECTION DU CSV ---
         document.getElementById('bulkBtn').onclick = () => {
             const count = parseInt(document.getElementById('bulkCount').value);
             const country = document.getElementById('countrySelect').value;
-            let csv = "IBAN (Formaté),PAYS\\n";
+            
+            // 1. \uFEFF pour forcer Excel à lire le fichier en UTF-8 (sauve les accents comme "Formaté")
+            // 2. Utilisation du point-virgule (;) obligatoire pour Excel en France/Europe.
+            // 3. \r\n pour les sauts de ligne corrects.
+            let csv = "\uFEFFIBAN (Formaté);PAYS\r\n"; 
+            
             for(let i=0; i<count; i++) {
                 const iban = generateRaw(country);
-                const formatted = iban.match(/.{1,4}/g).join(' '); // Formatage par bloc pour le CSV
-                csv += `"${formatted}",${country}\\n`;
+                
+                // Découpage propre par blocs selon la configuration du pays
+                let formattedStr = "";
+                let currentIdx = 0;
+                blockConfig[country].forEach(size => {
+                    formattedStr += iban.substring(currentIdx, currentIdx + size) + " ";
+                    currentIdx += size;
+                });
+                
+                // Trim final pour retirer l'espace en trop, et encadrement avec des guillemets
+                csv += `"${formattedStr.trim()}";"${country}"\r\n`;
             }
-            const blob = new Blob([csv], { type: 'text/csv' });
+            
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a'); a.href = url; a.download = `ibanr_export_${country}.csv`; a.click();
+            const a = document.createElement('a'); 
+            a.href = url; 
+            a.download = `ibanr_export_${country}_${count}.csv`; 
+            a.click();
+            
+            // Nettoyage de la mémoire
+            window.URL.revokeObjectURL(url);
         };
 
         document.onkeydown = (e) => {
             if(e.code === 'Space' && document.activeElement.tagName !== 'INPUT') { e.preventDefault(); refresh(); }
-            if(e.code === 'KeyC' && e.ctrlKey && e.shiftKey) copyI(currentFullIban);
+            if(e.code === 'KeyC' && e.ctrlKey && e.shiftKey) { e.preventDefault(); copyI(currentFullIban); }
+            if(e.code === 'Escape' && historyModal.classList.contains('active')) historyModal.classList.remove('active');
         };
 
         refresh();
